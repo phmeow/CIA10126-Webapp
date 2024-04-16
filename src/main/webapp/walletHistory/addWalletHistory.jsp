@@ -1,5 +1,4 @@
 <%@ page import="com.wallet.history.model.WalletHistoryVO" %>
-<%@ page import="java.sql.Timestamp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -75,14 +74,6 @@
 <FORM METHOD="post" ACTION="walletHistory.do" name="form1">
     <table>
         <tr>
-            <td>異動時間:</td>
-            <td><label>
-                <input type="TEXT" name="changeTime"
-                       value="<%= (walletHistoryVO==null)? new Timestamp(System.currentTimeMillis()) : walletHistoryVO.getChangeTime()%>"
-                       size="45"/>
-            </label></td>
-        </tr>
-        <tr>
             <td>會員編號:</td>
             <td><label>
                 <input type="TEXT" name="memberId"
@@ -102,11 +93,22 @@
             <td><label>
                 <select size="1" name="changeType">
                     <c:forEach var="i" begin="0" end="5">
-                        <option value="${i}" ${(i==0)? 'selected':'' } >${i}</option>
+                        <c:set var="typeLabel">
+                            <c:choose>
+                                <c:when test="${i eq 0}">付款</c:when>
+                                <c:when test="${i eq 1}">儲值</c:when>
+                                <c:when test="${i eq 2}">提領</c:when>
+                                <c:when test="${i eq 3}">退款</c:when>
+                                <c:when test="${i eq 4}">入帳</c:when>
+                                <c:when test="${i eq 5}">手續費</c:when>
+                            </c:choose>
+                        </c:set>
+                        <option value="${i}" ${(i==0)? 'selected':''}>${typeLabel}</option>
                     </c:forEach>
                 </select>
             </label></td>
         </tr>
+
 
         <%--        <jsp:useBean id="walletHistorySvc" scope="page" class="com.wallet.history.model.WalletHistoryService"/>--%>
 

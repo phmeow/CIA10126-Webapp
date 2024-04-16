@@ -86,28 +86,39 @@
                 <%=walletHistoryVO.getWalletHistoryId()%>
             </td>
         </tr>
-        <tr>
-            <td>異動時間:</td>
-            <td><label>
-                <input type="TEXT" name="changeTime" value="<%=walletHistoryVO.getChangeTime()%>" size="45"/>
-            </label></td>
-        </tr>
+
         <tr>
             <td>會員編號:</td>
-            <td><label>
-                <input type="TEXT" name="memberId" value="<%=walletHistoryVO.getMemberId()%>" size="45"/>
-            </label></td>
+            <td>
+                <%=walletHistoryVO.getMemberId()%>
+            </td>
         </tr>
+
         <tr>
             <td>異動金額:</td>
             <td><label>
                 <input name="changeAmount" type="text" value="<%=walletHistoryVO.getChangeAmount()%>">
             </label></td>
         </tr>
+
         <tr>
-            <td>金流種類:</td>
+            <td>金流種類:<span style="color: red; "><b>*</b></span></td>
             <td><label>
-                <input type="TEXT" name="changeType" value="<%=walletHistoryVO.getChangeType()%>" size="45"/>
+                <select size="1" name="changeType">
+                    <c:forEach var="i" begin="0" end="5">
+                        <c:set var="typeLabel">
+                            <c:choose>
+                                <c:when test="${i eq 0}">付款</c:when>
+                                <c:when test="${i eq 1}">儲值</c:when>
+                                <c:when test="${i eq 2}">提領</c:when>
+                                <c:when test="${i eq 3}">退款</c:when>
+                                <c:when test="${i eq 4}">入帳</c:when>
+                                <c:when test="${i eq 5}">手續費</c:when>
+                            </c:choose>
+                        </c:set>
+                        <option value="${i}" ${(walletHistoryVO.changeType == i)? 'selected':''}>${typeLabel}</option>
+                    </c:forEach>
+                </select>
             </label></td>
         </tr>
 

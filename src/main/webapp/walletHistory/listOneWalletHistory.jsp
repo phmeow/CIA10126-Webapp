@@ -1,10 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.wallet.history.model.WalletHistoryVO" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
     //WalletHistoryServlet.java(Controller), 存入req的walletHistoryVO物件
     WalletHistoryVO walletHistoryVO = (WalletHistoryVO) request.getAttribute("walletHistoryVO");
+    Map<Integer, String> changeTypeMap = new HashMap<>();
+    changeTypeMap.put(0, "付款");
+    changeTypeMap.put(1, "儲值");
+    changeTypeMap.put(2, "提領");
+    changeTypeMap.put(3, "退款");
+    changeTypeMap.put(4, "入帳");
+    changeTypeMap.put(5, "手續費");
 %>
 
 <html>
@@ -50,7 +59,10 @@
 
 </head>
 <body>
-
+<%
+    int changeType = walletHistoryVO.getChangeType();
+    String changeTypeText = changeTypeMap.get(changeType);
+%>
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
     <tr>
@@ -79,16 +91,18 @@
         </td>
         <td><%=walletHistoryVO.getChangeAmount()%>
         </td>
-        <td><%=walletHistoryVO.getChangeType()%>
+        <td><%= changeTypeText %>
         </td>
         <td>
-            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/walletHistory/walletHistory.do"
+            <form method="post" action="<%=request.getContextPath()%>/walletHistory/walletHistory.do"
                   style="margin-bottom: 0;">
                 <input type="submit" value="修改">
                 <input type="hidden" name="walletHistoryId" value="${walletHistoryVO.getWalletHistoryId()}">
-                <input type="hidden" name="action" value="getOne_For_Update"></FORM>
+                <input type="hidden" name="action" value="getOne_For_Update">
+            </form>
         </td>
     </tr>
+
 </table>
 
 </body>

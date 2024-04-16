@@ -172,13 +172,7 @@ public class WalletHistoryServlet extends HttpServlet {
 
             // ***********************1.接收請求參數 - 輸入格式的錯誤處理*************************
 
-            Timestamp changeTime;
-            try {
-                changeTime = Timestamp.valueOf(req.getParameter("changeTime").trim());
-            } catch (IllegalArgumentException e) {
-                changeTime = new Timestamp(System.currentTimeMillis());
-                errorMsgs.add("請輸入異動時間!");
-            }
+            Timestamp changeTime = new Timestamp(System.currentTimeMillis());
 
             int memberId = 0;
             try {

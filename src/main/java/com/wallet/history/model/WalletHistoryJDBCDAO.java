@@ -233,18 +233,18 @@ public class WalletHistoryJDBCDAO implements WalletHistoryDAO_interface {
         WalletHistoryVO walletHistoryVO1 = new WalletHistoryVO();
         walletHistoryVO1.setChangeTime(new Timestamp(System.currentTimeMillis()));
         walletHistoryVO1.setMemberId(3);
-        walletHistoryVO1.setChangeAmount(1000);
-        walletHistoryVO1.setChangeType((byte) 2);
+        walletHistoryVO1.setChangeAmount(2000);
+        walletHistoryVO1.setChangeType((byte) 1);
         dao.insert(walletHistoryVO1);
 
         // 修改
-        WalletHistoryVO walletHistoryVO2 = new WalletHistoryVO();
-        walletHistoryVO2.setWalletHistoryId(1);
-        walletHistoryVO2.setChangeTime(new Timestamp(System.currentTimeMillis()));
-        walletHistoryVO2.setMemberId(1);
-        walletHistoryVO2.setChangeAmount(15000);
-        walletHistoryVO2.setChangeType((byte) 4);
-        dao.update(walletHistoryVO2);
+//        WalletHistoryVO walletHistoryVO2 = new WalletHistoryVO();
+//        walletHistoryVO2.setWalletHistoryId(1);
+//        walletHistoryVO2.setChangeTime(new Timestamp(System.currentTimeMillis()));
+//        walletHistoryVO2.setMemberId(1);
+//        walletHistoryVO2.setChangeAmount(15000);
+//        walletHistoryVO2.setChangeType((byte) 4);
+//        dao.update(walletHistoryVO2);
 
         // 查詢
 //        WalletHistoryVO walletHistoryVO3 = dao.findByPrimaryKey(2);

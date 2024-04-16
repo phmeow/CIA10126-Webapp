@@ -81,7 +81,16 @@
             <td>${walletHistoryVO.changeTime}</td>
             <td>${walletHistoryVO.memberId}</td>
             <td>${walletHistoryVO.changeAmount}</td>
-            <td>${walletHistoryVO.changeType}</td>
+            <td>
+                <c:choose>
+                    <c:when test="${walletHistoryVO.changeType eq 0}">付款</c:when>
+                    <c:when test="${walletHistoryVO.changeType eq 1}">儲值</c:when>
+                    <c:when test="${walletHistoryVO.changeType eq 2}">提領</c:when>
+                    <c:when test="${walletHistoryVO.changeType eq 3}">退款</c:when>
+                    <c:when test="${walletHistoryVO.changeType eq 4}">入帳</c:when>
+                    <c:when test="${walletHistoryVO.changeType eq 5}">手續費</c:when>
+                </c:choose>
+            </td>
             <td>
                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/walletHistory/walletHistory.do"
                       style="margin-bottom: 0;">
